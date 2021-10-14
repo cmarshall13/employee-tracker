@@ -16,4 +16,9 @@ VALUES
     ('Legal Team Lead', 433456, 4),
     ('Lawyer', 443456, 4);
 
-
+INSERT INTO managers (name)
+VALUES
+    ('Joe Shmo'),
+    ('Shelley Lobster'),
+    ('Chris P Bacon'),
+    ('Jesus Christo');
