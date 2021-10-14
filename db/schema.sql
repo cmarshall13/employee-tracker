@@ -23,3 +23,16 @@ CREATE TABLE managers (
     name VARCHAR(30),
     PRIMARY KEY (id)
 );
+
+CREATE TABLE employees (
+    id INT AUTO_INCREMENT,
+    first_name VARCHAR(30) NOT NULL,
+    last_name VARCHAR(30) NOT NULL,
+    role_id INT,
+    manager_id INT,
+    dept_id INT,
+    PRIMARY KEY (id),
+    FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE SET NULL,
+    FOREIGN KEY (manager_id) REFERENCES managers(id) ON DELETE SET NULL,
+    FOREIGN KEY (dept_id) REFERENCESdepartments(id) ON DELETE SET NULL
+);
