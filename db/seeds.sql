@@ -8,13 +8,13 @@ VALUES
 
 INSERT INTO roles (title, salary, department_id)
 VALUES
-    ('Sales Lead', 112987, 1),
-    ('Salesperson', 113987, 1),
-    ('Lead Engineer', 226789, 2),
-    ('Software Engineer', 227789, 2),
-    ('Accountant', 323456, 3),
-    ('Legal Team Lead', 433456, 4),
-    ('Lawyer', 443456, 4);
+    ('Sales Lead', 200000, 1),
+    ('Salesperson', 130000, 1),
+    ('Lead Engineer', 250000, 2),
+    ('Software Engineer', 180000, 2),
+    ('Accountant', 250000, 3),
+    ('Legal Team Lead', 255000, 4),
+    ('Lawyer', 200000, 4);
 
 INSERT INTO managers (name)
 VALUES
@@ -22,3 +22,16 @@ VALUES
     ('Shelley Lobster'),
     ('Chris P Bacon'),
     ('Jesus Christo');
+
+INSERT INTO employees (first_name, last_name, role_id, manager_id, dept_id)
+VALUES
+    ('Bob', 'Smith', 2, 1, 1)
+    ('Joe', 'Shmo', 1, NULL, 1),
+    ('Eagle' 'Eye', 2, 1, 1),
+    ('Shelley', 'Lobster', 3, NULL, 2),
+    ('Hugo', 'Buttz', 4, 2, 2),
+    ('Harry', 'Chest', 4, 2, 2),
+    ('Magnolia', 'Bush', 7, 4, 4),
+    ('Chris', 'P.Bacon', 5, NULL, 3),
+    ('Sal', 'Amander', 7, 4, 4),
+    ('Jesus', 'Christo', 6, NULL, 4);
