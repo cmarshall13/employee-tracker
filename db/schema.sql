@@ -18,3 +18,8 @@ CREATE TABLE roles (
     FOREIGN KEY (department_id) REFERENCES departments(id) ON DELETE SET NULL
 );
 
+CREATE TABLE managers (
+    id INT AUTO_INCREMENT,
+    name VARCHAR(30),
+    PRIMARY KEY (id)
+);
