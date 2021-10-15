@@ -12,7 +12,7 @@ getEmployees = () => {
             if (err) {
                 reject('Something went wrong!' + err);
             }
-            let resOnjArr = JSON.parse(JSON.stringify(res));
+            let resObjArr = JSON.parse(JSON.stringify(res));
             for (res of resObjArr) {
                 employees.push(`${res.id}: ` + res.name);
             }
