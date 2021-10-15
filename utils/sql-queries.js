@@ -140,6 +140,21 @@ updateEmployeeRole = (employeeId, roleId, deptId) => {
     init();
 };
 
+deleteEmployee = employee => {
+    const query = `DELETE FROM employees
+                    WHERE CONCAT(first_name, ' ', last_name) = ?`;
+    const param = employee;
+    db.query(query, param, function (err, res) {
+        if (err) {
+            console.log(`Something went wrong: ${err}`);
+            return;
+        }
+        console.log(`\n\nEmployee Deleted.`)
+        console.log('Press UP or DOWN to continue...')
+    });
+    init();
+};
+
 deleteRole = role => {
     const query = `DELETE FROM roles
                     WHERE title = ?`
@@ -188,7 +203,7 @@ module.exports = {
     viewAllDepartments,
     viewAllRoles,
     viewAllEmployees,
-    viewAllEmployeesByManager,
+    viewEmployeesByManager,
     viewEmployeesByDepartment,
     addDepartment,
     addRole,
