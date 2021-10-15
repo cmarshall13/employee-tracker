@@ -48,3 +48,33 @@ viewAllEmployees = () => {
     });
     init();
 };
+
+viewEmployeesByManager = () => {
+    const query = `SELECT employees.id, employees.first_name, employees.last_name, managers.name AS manager
+                    FROM employees
+                    LEFT JOIN managers ON employees.manager_id = managers.id WHERE name IS NOT NULL;`;
+    db.query(query, function (err, res) {
+        if (err) {
+            console.log(`Something went wrong: ${err}`);
+            return;
+        }
+        console.table('\n\nEMPLOYEES BY MANAGER', res);
+        console.log(`Press UP or DOWN to continue...`);
+    });
+    init();
+};
+
+viewEmployeesByDepartment = () => {
+    const query = `SELECT employees.id, employees.first_name, employees.last_name, departments.name AS department
+                    FROM employees
+                    LEFT JOIN departments ON employees.dept_id = departments.id;`;
+    db.query(query, function (err, res) {
+        if (err) {
+            console.log(`Something went wrong: ${err}`);
+            return;
+        }
+        console.table('\n\nEMPLOYEES BY DEPARTMENT', res);
+        console.log(`Press UP or DOWN to continue...`);
+    });
+    init();
+};
