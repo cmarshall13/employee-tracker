@@ -35,3 +35,40 @@ getRoles = () => {
         })
     });
 };
+
+getDepartments = () => {
+    return new Promise((resolve, reject) => {
+        db.query(`SELECT * FROM departments`, function (err, res) {
+            if (err) {
+                reject('Something went wrong!' + err);
+            }
+            let resObjArr = JSON.parse(JSON.stringify(res));
+            for (res of resObjArr) {
+                departments.push(`${res.id}: ` + res.name);
+            }
+            resolve(departments);
+        })
+    });
+};
+
+getManagers = () => {
+    return new Promise((resolve, reject) => {
+        db.query(`SELECT * FROM managers`, function (err, res) {
+            if (err) {
+                reject('Something went wrong!' + err);
+            }
+            let resObjArr = JSON.parse(JSON.stringify(res));
+            for (res of resObjArr) {
+                managers.push(`${res.id}: ` + res.name);
+            }
+            resolve(managers); 
+        })
+    });
+};
+
+module.exports = {
+    getEmployees,
+    getManagers,
+    getRoles,
+    getDepartments
+};
