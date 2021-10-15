@@ -78,3 +78,48 @@ viewEmployeesByDepartment = () => {
     });
     init();
 };
+
+addDepartment = department => {
+    const query = `INSERT INTO departments(name)
+                    VALUE(?)`
+    const param = department;
+    db.query(query, param, function (err, res) {
+        if (err) {
+            console.log(`Something went wrong: ${err}`);
+            return;
+        }
+        console.log('\n\nAdded department to database.');
+        console.log(`Press UP or DOWN to continue...`);
+    });
+    init();
+};
+
+addRole = (title, department, salary) => {
+    const query = `INSERT INTO roles(title, department_id, salary)
+                    VALUE(?, ?, ?)`
+    const params = [title, department, salary];
+    db.query(query, params, function (err, res) {
+        if (err) {
+            console.log(`Something went wrong: ${err}`);
+            return;
+        }
+        console.log('\n\nRole added successfully.');
+        console.log(`Press UP or DOWN to continue...`);
+    });
+    init();
+};
+
+addEmployee = (firstName, lastName, role, manager, department) => {
+    const query = `INSERT INTO employees(first_name, last_name, role_id, manager_id, dept_id)
+                    VALUES(?, ?, ?, ?, ?)`;
+    const params = [firstName, lastName, role, manager, department];
+    db.query(query, params, function (err, res) {
+        if (err) {
+            console.log(`Something went wrong: ${err}`);
+            return;
+        }
+        console.log(`\n\nEmployee added to database.`);
+        console.log(`Press UP or DOWN to continue...`);
+    });
+    init();
+};
