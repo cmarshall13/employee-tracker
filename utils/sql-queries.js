@@ -123,3 +123,79 @@ addEmployee = (firstName, lastName, role, manager, department) => {
     });
     init();
 };
+
+updateEmployeeRole = (employeeId, roleId, deptId) => {
+    const query = `UPDATE employees
+                    SET role_id = ?, dept_id = ?
+                    WHERE id = ?;`;
+    const params = [roleId, deptId, employeeId];
+    db.query(query, params, function (err,res) {
+        if (err) {
+            console.log(`Something went wrong: ${err}`);
+            return;
+        }
+        console.log(`\n\nEmployee role updated successfuly.`);
+        console.log(`Press UP or DOWN to continue...`);
+    });
+    init();
+};
+
+deleteRole = role => {
+    const query = `DELETE FROM roles
+                    WHERE title = ?`
+    const param = role;
+    db.query(query, param, function (err, res) {
+        if (err) {
+            console.log(`Something went wrong: ${err}`);
+            return;
+        }
+        console.log(`\n\nRole deleted.`);
+        console.log(`Press UP or DOWN to continue...`);
+    });
+    init();
+};
+
+deleteDepartment = department => {
+    const query = `DELETE FROM departments
+                    WHERE name = ?`
+    const param = department;
+    db.query(query, param, function (err, res) {
+        if (err) {
+            console.log(`Something went wrong: ${err}`);
+            return;
+        }
+        console.log(`\n\nDepartment deleted.`);
+        console.log(`Press UP or DOWN to continue...`);
+    });
+    init();
+};
+
+addSalaries = () => {
+    const query = `SELECT SUM(salary) salary_total
+                    FROM roles;`;
+    db.query(query, function (err, res) {
+        if (err) {
+            console.log(`Something went wrong: ${err}`);
+            return;
+        }
+        let totalSalaries = JSON.stringify(res[0].salary_total);
+        console.log(`\n\nTotal utilized budget: ${totalSalaries.replace(/"/g, '')}`);
+    });
+    init();
+};
+
+module.exports = {
+    viewAllDepartments,
+    viewAllRoles,
+    viewAllEmployees,
+    viewAllEmployeesByManager,
+    viewEmployeesByDepartment,
+    addDepartment,
+    addRole,
+    addEmployee,
+    updateEmployeeRole,
+    deleteEmployee,
+    deleteRole,
+    deleteDepartment,
+    addSalaries
+};
